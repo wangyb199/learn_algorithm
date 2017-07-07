@@ -9,7 +9,7 @@ function sort(data) {
     let sorted_left = [];
     let sorted_right = [];
 
-    if(data.length===1){
+    if(data.length<=1){
         return data;
     }
 
@@ -21,16 +21,7 @@ function sort(data) {
         }
     }
 
-    let ret = [];
-    if(sorted_left.length>0){
-        ret = ret.concat(sort(sorted_left))
-    }
-    ret.concat([data[0]]);
-    if(sorted_right.length>0){
-        ret = ret.concat(sort(sorted_right))
-    }
-
-    return ret;
+    return sort(sorted_left).concat([data[0]]).concat(sort(sorted_right));
 }
 
 console.log(sort(require("./random.data").genData(1000)));
